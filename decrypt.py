@@ -1,18 +1,24 @@
 from cryptography.fernet import Fernet
 from tkinter import filedialog
 
-keypath = filedialog.askopenfilename(title="Select A Key", filetypes=[("Key File", "*.key")])
+files = filedialog.askopenfilenames(title="Select Files", filetypes=[("All Files", "*.*")])
+keypath = filedialog.askopenfilename(title="Select Key", filetypes=[("Key File", "*.key")])
 
-with open(keypath, "rb") as secret:
-    key = secret.read()
-
-filepath = filedialog.askopenfilename(title="Select A File", filetypes=[("All Files", "*.*")])
-
-with open(filepath, "rb") as file:
-    contents = file.read()
-decrypted = Fernet(key).decrypt(contents)
-
-with open(filepath, "wb") as file:
-    file.write(decrypted)
-
-print("File decrypted!")
+try:
+    if files:
+        if keypath:
+            with open(keypath, "rb") as secret:
+                key = secret.read()
+            for filepath in files:
+                with open(filepath, "rb") as file:
+                    contents = file.read()
+                decrypted = Fernet(key).decrypt(contents)
+                with open(filepath, "wb") as file:
+                    file.write(decrypted)
+                print("File"+("s" if len(files) > 1 else "")+" decrypted!")
+        else:
+            print("Error: Decryption key was not provided.")
+    else:
+        print("Error: No files were selected.")
+except Exception:
+    print("An error occurred. Please check if the key provided is valid and if the files are encrypted.")
