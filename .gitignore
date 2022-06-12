@@ -233,5 +233,6 @@ fabric.properties
 .idea/
 .idea/.gitignore
 .idea/discord.xml
+release/
 test/
 secret.key
