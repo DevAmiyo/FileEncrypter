@@ -1,8 +1,14 @@
 from cryptography.fernet import Fernet
+from tkinter import Tk
 from tkinter import filedialog
 
+root = Tk()
+root.withdraw()
+
+root.iconbitmap('assets/file.ico')
 files = filedialog.askopenfilenames(title="Select Files", filetypes=[("All Files", "*.*")])
-keypath = filedialog.askopenfilename(title="Select Key", filetypes=[("Key File", "*.key")])
+root.iconbitmap('assets/key.ico')
+keypath = filedialog.askopenfilename(title="Select Key", filetygpes=[("Key File", "*.key")])
 
 try:
     if files:
