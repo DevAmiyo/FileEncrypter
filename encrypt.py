@@ -5,10 +5,10 @@ from tkinter import filedialog
 root = Tk()
 root.withdraw()
 
+root.iconbitmap('assets/file.ico')
+files = filedialog.askopenfilenames(title="Select Files to Encrypt", filetypes=[("All Files", "*.*")])
 root.iconbitmap('assets/key.ico')
 keypath = filedialog.asksaveasfilename(title="Save Key", filetypes=[("Key File", "*.key")])
-root.iconbitmap('assets/file.ico')
-files = filedialog.askopenfilenames(title="Select Files", filetypes=[("All Files", "*.*")])
 
 if keypath:
     if files:

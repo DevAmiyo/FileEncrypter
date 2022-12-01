@@ -1,3 +1,4 @@
+import cryptography
 from cryptography.fernet import Fernet
 from tkinter import Tk
 from tkinter import filedialog
@@ -6,7 +7,7 @@ root = Tk()
 root.withdraw()
 
 root.iconbitmap('assets/file.ico')
-files = filedialog.askopenfilenames(title="Select Files", filetypes=[("All Files", "*.*")])
+files = filedialog.askopenfilenames(title="Select Files to Decrypt", filetypes=[("All Files", "*.*")])
 root.iconbitmap('assets/key.ico')
 keypath = filedialog.askopenfilename(title="Select Key", filetygpes=[("Key File", "*.key")])
 
@@ -26,5 +27,5 @@ try:
             print("Error: Decryption key was not provided.")
     else:
         print("Error: No files were selected.")
-except Exception:
+except cryptography.exceptions.InvalidKey:
     print("An error occurred. Please check if the key provided is valid and if the files are encrypted.")
