@@ -9,7 +9,7 @@ root.withdraw()
 root.iconbitmap('assets/file.ico')
 files = filedialog.askopenfilenames(title="Select Files to Decrypt", filetypes=[("All Files", "*.*")])
 root.iconbitmap('assets/key.ico')
-keypath = filedialog.askopenfilename(title="Select Key", filetygpes=[("Key File", "*.key")])
+keypath = filedialog.askopenfilename(title="Select Key", filetypes=[("Key File", "*.key")])
 
 try:
     if files:
